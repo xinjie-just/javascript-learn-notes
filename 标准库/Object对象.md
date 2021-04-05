@@ -138,3 +138,146 @@ Object.getOwnPropertyNames(a89);
 ```
 
 一般情况下，几乎总是使用 `Object.keys()` 方法，遍历对象的属性。
+
+## 5. Object 的实例方法
+
+除了静态方法，`Object` 还有实例方法，所有 `Object` 实例对象都继承了这些方法。
+
+- `Object.prototype.valueOf()` 返回当前对象对应的值。
+- `Object.prototype.toString()` 返回当前对象对应的字符串形式。
+- `Object.prototype.toLocalString()` 返回当前对象对应的本地字符串形式。
+- `Object.prototype.hasOwnProperty()` 判断某个属性是否是当前对象自身的属性，还是继承自原型对象的属性。
+- `Object.prototype.isPrototypeOf()` 判断当前对象是否是另一个对象的原型。
+- `Object.prototype.propertyIsEnumerable()` 判断某个属性是否可枚举。
+
+### 5.1. Object.prototype.valueOf()
+
+`valueOf()` 方法是返回一个对象的值，默认情况下返回对象本身。
+
+```javascript
+let o = new Object();
+o.valueOf() === o; // true
+```
+
+### 5.2. Object.prototype.toString()
+
+`toString()` 方法的作用是返回一个对象的字符串形式，默认返回类型字符串。
+
+```javascript
+let o1 = new Object();
+o1.toString(); // "[object Object]"
+
+let o2 = { a: 1 };
+o2.toString(); // "[object Object]"
+```
+
+对于一个对象调用 `toString` 方法，会返回字符串`[object Object]`，该字符串说明对象的类型。
+
+字符串`[object Object]`本身没有太大的用处，但是通过自定义 `toString` 方法，可以让对象在自动类型转换时，得到想要的字符串形式。
+
+```javascript
+let obj = new Object();
+
+obj.toString = function () {
+  return "hello";
+};
+
+obj + " " + "world"; // "hello world"
+```
+
+数组、字符串、函数、Date 对象都分别部署了自定义的 `toString` 方法，覆盖了 `Object.prototype.toString` 方法。
+
+```javascript
+[1, 2, 3].toString(); // "1,2,3"
+
+"123".toString(); // "123"
+
+(function () {
+  return 123;
+}.toString());
+// "function () {
+//   return 123;
+// }"
+
+new Date().toString();
+// "Mon Apr 05 2021 21:50:49 GMT+0800 (中国标准时间)"
+```
+
+### 5.3. toString() 的应用：判断数据类型
+
+`Object.prototype.toString()` 方法返回对象的类型字符串。
+
+由于实例对象可能会自定义 `toString` 方法，覆盖掉 `Object.prototype.toString` 方法，所以为了得到类型字符串，最好直接使用 `Object.prototype.toString` 方法。通过函数的 `call` 方法，可以在任意值上调用这个方法，帮助我们判断这个值的类型。
+
+不同数据类型的 `Object.prototype.toString` 方法返回值如下。
+
+- 数值：返回 `[object Number]`。
+- 字符串：返回 `[object String]`。
+- 布尔值：返回 `[object Boolean]`。
+- `undefined`：返回 `[object Undefined]`。
+- `null`：返回 `[object Null]`。
+- 数组：返回 `[object Array]`。
+- `arguments` 对象：返回 `[object Arguments]`。
+- 函数：返回 `[object Function]`。
+- `Error` 对象：返回 `[object Error]`。
+- `Date` 对象：返回 `[object Date]`。
+- `RegExp` 对象：返回 `[object RegExp]`。
+- 其他对象：返回 `[object Object]`。
+
+### 5.4. Object.prototype.toLocaleString()
+
+`Object.prototype.toLocaleString` 方法与 `toString` 的返回结果相同，也是返回一个值的字符串形式。
+
+这个方法的主要作用是留出一个接口，让各种不同的对象实现自己版本的 `toLocaleString`，用来返回针对某些地域的特定的值。
+
+```javascript
+let person = {
+  toString: function () {
+    return "Donald Trump";
+  },
+  toLocaleString: function () {
+    return "唐纳德·特朗普";
+  },
+};
+
+person.toString(); // Donald Trump
+person.toLocaleString(); // 唐纳德·特朗普
+```
+
+主要有三个对象自定义了 `toLocaleString` 方法。
+
+`Array.prototype.toLocaleString()`
+`Number.prototype.toLocaleString()`
+`Date.prototype.toLocaleString()`
+
+```javascript
+let d = new Date();
+d.toString(); // "Mon Apr 05 2021 22:13:23 GMT+0800 (中国标准时间)"
+d.toLocaleString(); // "2021/4/5下午10:13:23"
+```
+
+### 5.5. Object.prototype.hasOwnProperty()
+
+`Object.prototype.hasOwnProperty()` 方法接受一个字符串作为参数，返回一个布尔值，表示该实例对象自身是否具有该属性。
+
+```javascript
+let obj = {
+  p: 123,
+};
+
+obj.hasOwnProperty("p"); // true
+obj.hasOwnProperty("toString"); // false
+```
+
+对象 `obj` 自身具有 `p` 属性，所以返回 `true`。`toString` 属性是继承的，所以返回 `false`。
+
+`hasOwnProperty()` 和 `in` 的区别是，前者不包含的继承的属性，后者包含。
+
+```javascript
+let o = { a: 1 };
+"a" in o; // true
+"toString" in o; // true
+
+o.hasOwnProperty("a"); // true
+o.hasOwnProperty("toString"); // false
+```
