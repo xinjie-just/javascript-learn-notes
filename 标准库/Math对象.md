@@ -1,0 +1,118 @@
+# Math 对象
+
+`Math` 是 JavaScript 的原生对象，提供各种数学功能。该对象不是构造函数，不能生成实例，所有的属性和方法都必须在 `Math` 对象上调用。
+
+## 1. 静态属性
+
+```javascript
+// 常数 e
+Math.E; // 2.718281828459045
+
+// 2 的自然对数
+Math.LN2; // 0.6931471805599453
+
+// 10 的自然对数
+Math.LN10; // 2.302585092994046
+
+// 以 2 为底的 e 的对数
+Math.LOG2E; // 1.4426950408889634
+
+// 以 10 为底的 e 的对数
+Math.LOG10E; // 0.4342944819032518
+
+// 常数 π
+Math.PI; // 3.141592653589793
+
+// 0.5 的平方根
+Math.SQRT1_2; // 0.7071067811865476
+
+// 2 的平方根
+Math.SQRT2; // 1.4142135623730951
+```
+
+## 2. 静态方法
+
+Math 对象提供以下一些静态方法。
+
+- `Math.abs()`：绝对值
+- `Math.ceil()`：向上取整
+- `Math.floor()`：向下取整
+- `Math.max()`：最大值
+- `Math.min()`：最小值
+- `Math.pow()`：幂运算
+- `Math.sqrt()`：平方根
+- `Math.log()`：自然对数
+- `Math.exp()`：e 的指数
+- `Math.round()`：四舍五入
+- `Math.random()`：随机数
+
+### 2.1. Math.round()
+
+`Math.round` 方法用于四舍五入。
+
+```javascript
+Math.round(0.1); // 0
+Math.round(0.5); // 1
+Math.round(0.6); // 1
+
+// 等同于
+Math.floor(x + 0.5);
+```
+
+注意，它对负数的处理（主要是对 `0.5` 的处理）。
+
+```javascript
+Math.round(-1.1); // -1
+Math.round(-1.5); // -1, 相当于 Math.floor(-1.0)
+Math.round(-1.6); // -2，相当于 Math.floor(-1.1)
+```
+
+### 2.2. Math.random()
+
+`Math.random()` 返回 0 到 1 之间的一个伪随机数，可能等于 0，但是一定小于 1。
+
+```javascript
+Math.random();
+// 0.9757996725343512
+```
+
+任意范围的随机数生成函数如下。
+
+```javascript
+function getRandomArbitrary(min, max) {
+  return Math.random() * (max - min) + min;
+}
+
+getRandomArbitrary(1.5, 6.5);
+// 2.4942810038223864
+```
+
+任意范围的随机整数生成函数如下。
+
+```javascript
+function getRandomInt(min, max) {
+return Math.floor(Math.random() \* (max - min + 1)) + min;
+}
+
+getRandomInt(1, 6) // 5
+```
+
+返回随机字符的例子如下。
+
+```javascript
+function random_str(length) {
+  var ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  ALPHABET += "abcdefghijklmnopqrstuvwxyz";
+  ALPHABET += "0123456789-_";
+  var str = "";
+  for (var i = 0; i < length; ++i) {
+    var rand = Math.floor(Math.random() * ALPHABET.length);
+    str += ALPHABET.substring(rand, rand + 1);
+  }
+  return str;
+}
+
+random_str(6); // "NdQKOr"
+```
+
+上面代码中，`random_str` 函数接受一个整数作为参数，返回变量 `ALPHABET` 内的随机字符所组成的指定长度的字符串。
