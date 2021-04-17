@@ -125,7 +125,41 @@ one + two + three; // "33"
 "dog,pig,monkey".indexOf("money"); // -1
 ```
 
-### 4.5. String.prototype.split()
+### 4.5. String.prototype.replace()
+
+`replace` 方法用于替换匹配的子字符串，一般情况下只替换第一个匹配项。返回一个新的字符串，不改变原字符串。
+
+```javascript
+let s = "aaa";
+let s1 = s.replace("a", "b");
+s; // "aaa"
+s1; // "baa"
+```
+
+### 4.6. String.prototype.match()
+
+```javascript
+str.match(regexp);
+```
+
+`match` 方法用于确定原字符串是否匹配某一个子字符串，返回一个数组。如果传入一个非正则表达式对象，则会隐式地使用 `new RegExp(obj)` 将其转换为一个 `RegExp` 。
+
+返回值包括：
+
+- 匹配的成员。
+- `groups`: 一个捕获组数组 或 undefined（如果没有定义命名捕获组）。
+- `index`: 匹配的结果的开始位置。
+- `input`: 搜索的字符串。
+
+```javascript
+let a = "cat, bat, sat, fat".match("at");
+a instanceof Array; // true
+a[0]; // "at"
+a["index"]; // 1
+["at", (index: 1), (input: "cat, bat, sat, fat"), (groups: undefined)];
+```
+
+### 4.7. String.prototype.split()
 
 `split` 方法按照给定规则分割字符串，返回一个由分割出来的子字符串组成的数组。
 
@@ -154,4 +188,114 @@ one + two + three; // "33"
 "a|b|c".split("|", 2); // ["a", "b"]
 "a|b|c".split("|", 3); // ["a", "b", "c"]
 "a|b|c".split("|", 4); // ["a", "b", "c"]
+```
+
+### 4.8. String.prototype.trim()
+
+`trim` 方法用于去除字符串两端的空格，返回一个新字符串，不改变原字符串。
+
+```javascript
+`   hello world  `.trim(); // "hello world"
+```
+
+该方法去除的不仅仅是空格，还包括制表符（`\t`、`\v`）、换行符（`\n`）、回车符（`\r`）。
+
+```javascript
+"\r\n\vabc \t".trim(); // "abc"
+
+("\n");
+// "
+// "
+
+("\t"); // "	"
+("\v"); // ""
+```
+
+### 4.9. String.prototype.toLowerCase() 和 String.prototype.toUpperCase()
+
+`toLowerCase` 方法用于将一个字符串中字符全部转换为小写，`toUpperCase` 方法将一个字符串中字符全部转换为大写。返回新的字符串，不改变原字符。
+
+```javascript
+let s = "Hello World";
+let sLower = s.toLowerCase();
+sLower; // "hello world"
+s; // "Hello World"
+
+let s1 = "Hello World";
+let s1Upper = s1.toUpperCase();
+s1Upper; // "HELLO WORLD"
+s1; // "Hello World"
+```
+
+### 4.10. String.prototype.localeCompare()
+
+`localeCompare` 方法用于比较两个字符串。它返回一个整数，如果小于 0，表示第一个字符串小于第二个字符串；如果等于 0，表示两者相等；如果大于 0，表示第一个字符串大于第二个字符串。
+
+```javascript
+"dog".localeCompare("dog"); // 0
+"apple".localeCompare("banana"); // -1
+"e".localeCompare("d"); // 1
+```
+
+JavaScript 采用的是 Unicode 码点比较，直接通过比较运算符来比较两个字符时 `B` 小于 `a`。
+
+```javascript
+"B" > "a"; // false
+```
+
+而 `localeCompare` 方法会考虑自然语言的排序情况，`B` 排在 `a` 的前面。
+
+```javascript
+"B".localeCompare("a"); // 1
+```
+
+### 4.11. String.prototype.substr()、String.prototype.substring() 和 String.prototype.slice()
+
+`substr` 方法用于从原字符串取出子字符串并返回，不改变原字符串，跟 `slice` 和 `substring` 方法的作用相同。区别是：
+
+4.11.1. 第二个参数的含义不同
+
+- `substr` 方法的**第二个参数表示子字符串的长度**。
+- `substring` 方法的第二个参数表示子字符串的结束位置（不含该位置）。
+- `slice` 方法的第二个参数表示子字符串的结束位置（不含该位置）。
+
+```javascript
+"JavaScript".substr(1, 4); // "avaS"
+"Javascript".substring(1, 4); // "ava"
+"Javascript".slice(1, 4); // "ava"
+```
+
+4.11.2. 对于参数为负的处理不同
+
+- `substr` 方法，如果第一个参数是负数，表示倒数计算的字符位置。如果第二个参数是负数，会被自动转换成 0，会返回空字符串。
+- `substring` 方法，任何一个参数是负数将自动转换为 0.
+- `slice` 方法，参数是负数表示从结尾开始倒数计算的位置，即该负数加上字符串长度。
+
+```javascript
+"JavaScript".substr(2, -2); // "", 第二个参数为负会被转换为 0，表示截取 0 个字符，于是返回为空。。
+"JavaScript".substr(-7, 4); // "aScr", 从倒数第 7 位开始取 4 位字符。
+
+"JavaScript".substring(-7, 4); // "Java", 第一个参数会被自动转换为 0，从 0 开始取到第 4 位（不包括第 4 位）。
+"JavaScript".substring(-7, -4); // "", 两个参数会被自动转换为 0。
+
+"Javascript".slice(-5, -4); // "c" , 表示从倒数第 5 位取到倒数第 4 位（不包括倒数第 4 位）。
+"Javascript".slice(-7, 4); // "a" , 表示从倒数第 7 位（10 - 7 = 3，第 3 位）取到倒数第 4 位（不包括倒数第 4 位）。
+```
+
+4.11.3. 对于第一个参数大于第二个参数的处理不同
+
+- `substr` 方法，分别按照上面的规则处理第一个参数、第二个参数。
+- `substring` 方法，如果第一个参数大于第二个参数，自动调换位置。
+- `slice` 方法，如果第一个参数大于第二个参数，且同时为正或同时为负时，返回空字符串，其他情况参考前面的标准。
+
+```javascript
+"JavaScript".substr(3, 2); // "aS", 从第 3 位截取两个字符。
+"JavaScript".substr(-3, -5); // "", 如果第二个参数是负数，会被自动转换成 0，会返回空字符串。
+
+"JavaScript".substring(1, -4); // "J", 第一个参数大于第二个参数，相互调换位置，第一个参数为负转换为 0，表示从 0  位取到第 1 位（不包括第一位）
+"JavaScript".substring(-5, -6); // "“， 任何一个参数为负都被转换为 0。
+
+"JavaScript".slice(3, 2); // "", 返回空字符串。
+"JavaScript".slice(-3, -4); // ""，返回空字符串。
+"JavaScript".slice(3, -4); // "aSc"，从第 3 位截取到第 （10 - 4 = 6） 位（不包括第6位）。
 ```
