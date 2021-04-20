@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="https://www.baidu.com" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- <img src="http://ip:port/logo.png" alt="logo" id="logo" /> -->
+    <a href="https://www.baidu.com" title="baidu" name="baidu">百度</a>
+    <script>
+      // console.log(document.images.logo);
+      // console.log(document.getElementById("logo"));
+      // console.log(typeof document.getElementById("logo"));
+      // console.log(Object.keys(document.getElementById("logo")));
+      // console.log(Object.values(document.getElementById("logo")));
+      // console.log(document.getElementById("logo") === document.images.logo);
+      // console.log(document.getElementById("logo") instanceof HTMLCollection);
+      // console.log(document.getElementById("logo") instanceof NodeList);
+      // console.log(document.getElementById("logo") instanceof HTMLImageElement);
+      console.log(
+        document.links.baidu === document.getElementsByName("baidu")[0]
+      );
+      console.log(document.links.baidu instanceof HTMLLinkElement);
+      console.log(document.links.baidu instanceof HTMLAnchorElement);
+    </script>
+  </body>
+</html>
