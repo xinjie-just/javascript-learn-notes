@@ -33,7 +33,7 @@ console.log("%c%s", c, s);
 // 这段代码将输出红底白字
 ```
 
-![console.log的%c占位符输出]('./../images/console-log-%c.png')
+![console.log的%c占位符输出](./../images/console-log-%c.png)
 
 ## 2. console.warn() 和 console.error()
 
