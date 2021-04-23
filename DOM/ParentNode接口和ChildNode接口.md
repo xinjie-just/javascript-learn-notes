@@ -26,7 +26,7 @@ children[10] instanceof HTMLScriptElement  // true
 HTMLScriptElement.__proto__ === HTMLElement  // true
 ```
 
-- `<script>...</script>` 出现在构造函数 `HTMLScriptElement` 的原型链上。
+- `<script>...</script>` 是 `HTMLScriptElement` 的实例。
 - `HTMLScriptElement` 的原型对象是 `HTMLElement`。
 
 ### 1.2. ParentNode.firstElementChild
