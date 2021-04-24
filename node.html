@@ -8,9 +8,9 @@
     <title>Document</title>
   </head>
   <body>
-    <!-- <img src="http://ip:port/logo.png" alt="logo" id="logo" /> -->
-    <a href="https://www.baidu.com" title="baidu" name="baidu">百度</a>
-    <script>
+    <img src="http://ip:port/logo.png" alt="logo" id="logo" name="dom" />
+    <a href="https://www.baidu.com" title="baidu" name="dom">百度</a>
+    <script id="script1">
       // console.log(document.images.logo);
       // console.log(document.getElementById("logo"));
       // console.log(typeof document.getElementById("logo"));
@@ -20,11 +20,23 @@
       // console.log(document.getElementById("logo") instanceof HTMLCollection);
       // console.log(document.getElementById("logo") instanceof NodeList);
       // console.log(document.getElementById("logo") instanceof HTMLImageElement);
-      console.log(
-        document.links.baidu === document.getElementsByName("baidu")[0]
-      );
-      console.log(document.links.baidu instanceof HTMLLinkElement);
-      console.log(document.links.baidu instanceof HTMLAnchorElement);
+      // console.log(
+      //   document.links.baidu === document.getElementsByName("baidu")[0]
+      // );
+      // console.log(document.links.baidu instanceof HTMLLinkElement);
+      // console.log(document.links.baidu instanceof HTMLAnchorElement);
+      // window.onload = () => {
+      //   document.title = "1";
+      // };
+      // console.log("log", document.currentScript);
+      // console.log("log2", document.getElementById("script1"));
+      // console.log(
+      //   "log2",
+      //   document.currentScript === document.getElementById("script1")
+      // );
+
+      let dom = document.getElementsByName("dom");
+      console.log("dom", dom);
     </script>
   </body>
 </html>
