@@ -9,7 +9,9 @@
   </head>
   <body>
     <img src="http://ip:port/logo.png" alt="logo" id="logo" name="dom" />
-    <a href="https://www.baidu.com" title="baidu" name="dom">百度</a>
+    <a href="https://www.baidu.com" accesskey="h" title="baidu" name="dom"
+      >百度</a
+    >
     <script id="script1">
       // console.log(document.images.logo);
       // console.log(document.getElementById("logo"));
@@ -35,8 +37,12 @@
       //   document.currentScript === document.getElementById("script1")
       // );
 
-      let dom = document.getElementsByName("dom");
-      console.log("dom", dom);
+      // let dom = document.getElementsByName("dom");
+      // console.log("dom", dom);
+
+      let logo = document.getElementById("logo");
+      console.log(logo.tagName);
+      console.log(logo.nodeName);
     </script>
   </body>
 </html>
