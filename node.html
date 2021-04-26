@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="https://www.baidu.com" />
+    <title>Document</title>
+  </head>
+  <body>
+    <img src="http://ip:port/logo.png" alt="logo" id="logo" name="dom" />
+    <a href="https://www.baidu.com" accesskey="h" title="baidu" name="dom"
+      >百度</a
+    >
+    <script id="script1">
+      // console.log(document.images.logo);
+      // console.log(document.getElementById("logo"));
+      // console.log(typeof document.getElementById("logo"));
+      // console.log(Object.keys(document.getElementById("logo")));
+      // console.log(Object.values(document.getElementById("logo")));
+      // console.log(document.getElementById("logo") === document.images.logo);
+      // console.log(document.getElementById("logo") instanceof HTMLCollection);
+      // console.log(document.getElementById("logo") instanceof NodeList);
+      // console.log(document.getElementById("logo") instanceof HTMLImageElement);
+      // console.log(
+      //   document.links.baidu === document.getElementsByName("baidu")[0]
+      // );
+      // console.log(document.links.baidu instanceof HTMLLinkElement);
+      // console.log(document.links.baidu instanceof HTMLAnchorElement);
+      // window.onload = () => {
+      //   document.title = "1";
+      // };
+      // console.log("log", document.currentScript);
+      // console.log("log2", document.getElementById("script1"));
+      // console.log(
+      //   "log2",
+      //   document.currentScript === document.getElementById("script1")
+      // );
+
+      // let dom = document.getElementsByName("dom");
+      // console.log("dom", dom);
+
+      let logo = document.getElementById("logo");
+      console.log(logo.tagName);
+      console.log(logo.nodeName);
+    </script>
+  </body>
+</html>

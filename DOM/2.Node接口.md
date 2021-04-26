@@ -1,0 +1,188 @@
+# Node 接口
+
+所有 DOM 节点对象都继承了 Node 接口，拥有一些共同的属性和方法。这是 DOM 操作的基础。
+
+## 1. 属性
+
+### 1.1. Node.prototype.nodeType
+
+`nodeType` 属性返回一个正整数，表示节点的类型。
+
+```javascript
+document.nodeType // 9
+document.lastChild.nodeType  // 1
+```
+
+文档节点的类型值为9，元素节点的类型值是 1。
+
+Node 对象定义了几个常量，对应这些类型值。
+
+```javascript
+document.nodeType === Node.DOCUMENT_NODE  // true
+```
+
+文档节点的节点类型等于常量 `Node_DOCUMENT_NODE`。
+
+不同节点的 `nodeType` 属性值和对应的常量如下：
+
+- 文档节点（document）：9，对应常量 `Node.DOCUMENT_NODE`
+- 元素节点（element）：1，对应常量 `Node.ELEMENT_NODE`
+- 属性节点（attr）：2，对应常量 `Node.ATTRIBUTE_NODE`
+- 文本节点（text）：3，对应常量 `Node.TEXT_NODE`
+- 文档片断节点（DocumentFragment）：11，对应常量 `Node.DOCUMENT_FRAGMENT_NODE`
+- 文档类型节点（DocumentType）：10，对应常量 `Node.DOCUMENT_TYPE_NODE`
+- 注释节点（Comment）：8，对应常量 `Node.COMMENT_NODE`
+
+```javascript
+Node.ELEMENT_NODE  // 1
+Node.ATTRIBUTE_NODE  // 2
+Node.TEXT_NODE  // 3
+Node.COMMENT_NODE  // 8
+Node.DOCUMENT_NODE  // 9
+Node.DOCUMENT_TYPE_NODE  // 10
+Node.DOCUMENT_FRAGMENT_NODE  // 11
+```
+
+### 1.2. Node.prototype.nodeName
+
+`nodeName` 属性返回节点的名称。
+
+```javascript
+// <div id="test">hello world</div>
+
+let div = document.getElementById("test");
+div.nodeName  // "DIV"
+```
+
+元素节点 `<div>` 的 `nodeName` 属性就是大写的标签名 `DIV`。
+
+不同节点的 `nodeName` 属性值如下。
+
+- 文档节点（document）：`#document`
+- 元素节点（element）：大写的标签名
+- 属性节点（attr）：属性的名称
+- 文本节点（text）：`#text`
+- 文档片断节点（DocumentFragment）：`#document-fragment`
+- 文档类型节点（DocumentType）：文档的类型
+- 注释节点（Comment）：`#comment`
+
+```javascript
+document.firstChild.nodeName  // "html"
+// <!DOCTYPE html> 的文档类型是 "html"
+```
+
+### 1.3. Node.prototype.nodeValue
+
+`nodeValue` 属性返回一个字符串，表示当前节点本身的文本值，该属性可读写。
+
+只有文本节点（`text`）、注释节点（`comment`）和属性节点（`attr`）有文本值，因此这三类节点的`nodeValue` 可以返回结果，其他类型的节点一律返回 `null`。同样的，也只有这三类节点可以设置`nodeValue` 属性的值，其他类型的节点设置无效。
+
+```javascript
+// <div id="d1">hello world</div>
+let div = document.getElementById('d1');
+div.nodeValue // null, 元素节点无节点值
+div.firstChild.nodeValue // "hello world"，元素节点的第一个子节点的节点值是文本本身
+```
+
+`div` 是元素节点，`nodeValue` 属性返回 `null`。`div.firstChild` 是文本节点，所以可以返回文本值。
+
+### 1.4. Node.prototype.textContent
+
+`textContent` 属性返回当前节点和它的所有后代节点的文本内容。
+
+```javascript
+// <div id="test">hello world! <span>this is span text。</span></div>
+
+let div = document.getElementById("test");
+console.log(div.textContent);
+// hello world! this is span text。
+
+console.log(div.innerHTML);
+// hello world! <span>this is span text。</span>
+```
+
+`textContent`  返回后代节点的文本内容，`innerHTML` 返回后代节点，包括其中的 HTML 标签。
+
+对于文本节点（`text`）、注释节点（`comment`）和属性节点（`attr`），`textContent` 属性的值与`nodeValue` 属性相同。对于其他类型的节点，该属性会将每个子节点（不包括注释节点）的内容连接在一起返回。如果一个节点没有子节点，则返回空字符串。
+
+### 1.5. Node.prototype.baseURI
+
+```javascript
+location.href === document.baseURI // true
+```
+
+`baseURI` 属性返回一个字符串，表示当前网页的绝对路径。浏览器根据这个属性，计算网页上的相对路径的 `URL`。该属性为只读。`location.href` 可读可写，给它赋值，网页就会跳转到赋值的地址。
+
+该属性的值一般由当前网址的 URL（即 `window.location` 属性）决定，但是可以使用 HTML 的 `<base>` 标签，改变该属性的值。
+
+```javascript
+<base href="http://www.example.com/page.html">
+```
+
+`baseURI` 属性就返回 `<base>` 标签设置的值。
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="https://www.baidu.com" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      console.log("document.baseURI", document.baseURI);
+    </script>
+  </body>
+</html>
+```
+
+返回的是 `https://www.baidu.com`，当不设置 `<base>` 标签时，返回网页的绝对路径 `file:///G:/learn-notes/javascript-learn-notes/node.html`
+
+
+### 1.6. Node.prototype.ownerDocument
+
+### 1.7. Node.prototype.nextSibling
+
+### 1.8. Node.prototype.previousSibling
+
+### 1.9. Node.prototype.parentNode
+
+### 1.10. Node.prototype.parentElement
+
+### 1.11. Node.prototype.firstChild
+
+### 1.12. Node.prototype.lastChild
+
+### 1.13. Node.prototype.childNodes
+
+### 1.14. Node.prototype.isConnected
+
+
+## 2. 方法
+
+### 2.1. Node.prototype.appendChild()
+
+### 2.2. Node.prototype.hasChildNodes()
+
+### 2.1. Node.prototype.cloneNode()
+
+### 2.1. Node.prototype.insertBefore()
+
+### 2.1. Node.prototype.removeChild()
+
+### 2.1. Node.prototype.replaceChild()
+
+### 2.1. Node.prototype.contains()
+
+### 2.1. Node.prototype.compareDocumentPosition()
+
+### 2.1. Node.prototype.isEqualNode()
+
+### 2.1. Node.prototype.isSameNode()
+
+### 2.1. Node.prototype.normalize()
+
+### 2.1. Node.prototype.getRootNode()
