@@ -5,6 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <!-- <style>
+      article {
+        border: 5px solid #ccc;
+        width: 300px;
+        height: 100px;
+        padding: 10px;
+        margin: 0 10px 0 5px;
+        box-sizing: content-box;
+        overflow-y: hidden;
+      }
+    </style> -->
   </head>
   <body>
     <!-- <article contenteditable="true">
@@ -16,19 +27,22 @@
       </p>
     </article> -->
 
-    <article data-from="baiduNews">
+    <!-- <article data-from="baiduNews">
       <p>
         百年前，贯通燕山山脉通往北京西北方向的京张铁路是中国人自主设计、施工修建的第一条干线铁路。
       </p>
       <p>
         京张铁路的建成不仅是中国铁路的骄傲，更极大地振奋了中国人民的民族自信。
       </p>
-    </article>
+    </article> -->
+    <div id="div-01">Here is div-01</div>
+    <!-- comment -->
+    <div id="div-02">Here is div-02</div>
 
     <script>
-      var name = "<img src=x onerror=alert(1)>";
-      let article = document.getElementsByTagName("article")[0];
-      article.innerHTML = name;
+      let div1 = document.getElementById("div-01");
+      console.log("nextSibling", div1.nextSibling);
+      console.log("nextElementSibling", div1.nextElementSibling);
     </script>
   </body>
 </html>
