@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>img</title>
+    <style>
+      .img-container {
+        width: 400px;
+        height: 500px;
+      }
+      .img-container img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="img-container">
+      <img src="../images/baidu-test-img.jpg" alt="baidu-img" />
+    </div>
+    <script>
+      let img = document.images[0];
+      console.log("img.naturalWidth", img.naturalWidth);
+      console.log("img.naturalHeight", img.naturalHeight);
+      console.log("img.width", img.width);
+      console.log("img.height", img.height);
+      img.onload = () => {
+        console.log("completed", img.complete);
+        console.log("completed-img.naturalWidth", img.naturalWidth);
+        console.log("completed-img.naturalHeight", img.naturalHeight);
+        console.log("completed-img.width", img.width);
+        console.log("completed-img.height", img.height);
+      };
+    </script>
+  </body>
+</html>
