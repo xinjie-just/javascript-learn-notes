@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>readerFile</title>
+  </head>
+  <body>
+    <!-- <input type="file" onchange="onChange(event)" /> -->
+
+    <input type="file" onchange="previewFile()" />
+    <img src="" height="200" />
+
+    <!-- <input type="file" onchange="fileinfo(this.files)" />
+    <pre id="output"></pre> -->
+
+    <!-- <input type="file" onchange="readfile(this.files[0])" /> -->
+    <script>
+      /* function onChange(event) {
+        var file = event.target.files[0];
+        var reader = new FileReader();
+        reader.onload = function (event) {
+          console.log(event.target.result);
+        };
+
+        reader.readAsText(file);
+      } */
+      function previewFile() {
+        var preview = document.querySelector('img');
+        var file = document.querySelector('input[type=file]').files[0];
+        var reader = new FileReader();
+
+        reader.addEventListener(
+          'load',
+          function () {
+            preview.src = reader.result;
+          },
+          false
+        );
+
+        if (file) {
+          reader.readAsDataURL(file);
+        }
+      }
+      /* function fileinfo(files) {
+        for (var i = 0; i < files.length; i++) {
+          var f = files[i];
+          console.log(
+            f.name, // 文件名，不含路径
+            f.size, // 文件大小，Blob 实例属性
+            f.type, // 文件类型，Blob 实例属性
+            f.lastModifiedDate // 文件的最后修改时间
+          );
+        }
+      } */
+      /* function readfile(f) {
+        var reader = new FileReader();
+        reader.readAsText(f);
+        reader.onload = function () {
+          var text = reader.result;
+          var out = document.getElementById('output');
+          out.innerHTML = '';
+          out.appendChild(document.createTextNode(text));
+        };
+        reader.onerror = function (e) {
+          console.log('Error', e);
+        };
+      } */
+    </script>
+  </body>
+</html>
