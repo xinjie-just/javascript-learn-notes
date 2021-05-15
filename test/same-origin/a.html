@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>a页面-相同源测试</title>
+  </head>
+  <body>
+    <script>
+      // http://127.0.0.1:4502/test/same-origin-b.html
+      // 父窗口打开一个子窗口
+      var popup = window.open('../same-origin-b.html', 'title');
+      // 父窗口向子窗口发消息
+      popup.postMessage('Hello World!', '../same-origin-b.html');
+    </script>
+  </body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>a页面-相同源测试</title>
+  </head>
+  <body>
+    <iframe
+      src="http://127.0.0.1:4502/test/same-origin-b.html"
+      frameborder="0"
+    ></iframe>
+    <script>
+      console.log('a页面-相同源测试');
+      let win = document.getElementsByTagName('iframe')[0].contentWindow;
+      win.postMessage('我是来自a页面的消息', '*');
+    </script>
+  </body>
+</html>
