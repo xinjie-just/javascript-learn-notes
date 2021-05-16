@@ -12,13 +12,15 @@
       // window.onmessage = (event) => {
       //   console.log('event', event);
       // };
-      addEventListener(
-        'message',
-        function (e) {
-          console.log('e', e);
-        },
-        false
-      );
+      window.onload = () => {
+        window.addEventListener(
+          'message',
+          function (e) {
+            console.log('e', e);
+          },
+          false
+        );
+      };
     </script>
   </body>
 </html>
