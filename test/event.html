@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event</title>
+    <style>
+        /* .div {
+            width: 180px;
+            height: 180px;
+            border: 1px solid #f00;
+        }
+        
+        .button {
+            width: 100px;
+            height: 100px;
+            border: 1px solid #f50;
+        } */
+        
+        p {
+            width: 180px;
+            height: 180px;
+            border: 1px solid #f00;
+        }
+        
+        button {
+            width: 100px;
+            height: 100px;
+            border: 1px solid #f50;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <div class="div" onclick="doDivSomething()"> -->
+    <!-- <div class="div">
+        <button class="button" onclick="doButtonSomething()"><button>
+    </div>
+    <script>
+        function doDivSomething() {
+            console.log("div");
+        }
+        let div = document.querySelector("div");
+        div.setAttribute("onclick", doDivSomething());
+        function doButtonSomething() {
+            console.log("button");
+        }
+    </script> -->
+    <p>
+        <button>button</button>
+    </p>
+    <script>
+        let p = document.getElementsByTagName("p")[0];
+        let button = document.getElementsByTagName("button")[0];
+        p.addEventListener('click', function(event) {
+            // event.stopPropagation();
+            event.stopImmediatePropagation();
+            console.log(1);
+        });
+        p.addEventListener('click', function(event) {
+            // 会触发
+            console.log(2);
+        });
+        button.addEventListener('click', function(event) {
+            console.log("button");
+        });
+    </script>
+</body>
+
+</html>
