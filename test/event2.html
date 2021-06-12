@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event</title>
+</head>
+
+<body>
+
+    <!-- <div>
+        <p>Hello</p>
+    </div>
+    <script>
+        let div = document.querySelector("div"); // 获取 div 元素
+
+        function callback(event) {
+            let tag = event.currentTarget.tagName;
+            console.log("Tag: ", tag);
+        }
+        div.addEventListener("click", callback, true); // 给 div 元素添加 “click” 事件，在捕获阶段触发
+
+        let click = new Event("click"); // 实例化一个 click 事件
+
+        div.dispatchEvent(click); // 触发 div 元素的 click 事件
+    </script> -->
+
+    <div style="width: 120px; height: 120px; border: 1px solid #f00;">
+        <p style="width: 80px; height: 80px; border: 1px solid #ff0;">p</p>
+    </div>
+    <script>
+        let div = document.querySelector("div");
+        let p = document.querySelector("p");
+        let body = document.body;
+
+        /* p.addEventListener("click", (event) => {
+            console.log("p-event-target", event.target);
+            console.log("p-event-currentTarget", event.currentTarget);
+        }, false); */
+
+        div.addEventListener("click", (event) => {
+            console.log("div-event-target", event.target.tagName);
+            console.log("div-event-currentTarget", event.currentTarget.tagName);
+        }, false);
+
+        body.addEventListener("click", (event) => {
+            console.log("body-event-target", event.target.tagName);
+            console.log("body-event-currentTarget", event.currentTarget.tagName);
+        }, false);
+    </script>
+</body>
+
+</html>

@@ -49,6 +49,32 @@ buttonElement.addEventListener('click', {
 
 上面代码中，`addEventListener` 方法的第二个参数，就是一个具有 `handleEvent` 方法的对象。
 
+```html
+<table id="outside">
+    <tr><td id="t1">one</td></tr>
+    <tr><td id="t2">two</td></tr>
+</table>
+```
+
+```javascript
+// 改变t2的函数
+function modifyText() {
+  var t2 = document.getElementById("t2");
+  if (t2.firstChild.nodeValue == "three") {
+    t2.firstChild.nodeValue = "two";
+  } else {
+    t2.firstChild.nodeValue = "three";
+  }
+}
+
+// 为table添加事件监听器
+var el = document.getElementById("outside");
+el.addEventListener("click", modifyText, false);
+
+```
+
+在上个例子中，`modifyText()` 是一个 `click` 事件的监听器，通过使用 `addEventListenter()` 注册到 `table` 对象上。在表格中任何位置单击都会触发事件并执行 `modifyText()`。
+
 其次，**第三个参数除了布尔值 `useCapture`，还可以是一个属性配置对象。** 该对象有以下属性。
 
 - `capture`：布尔值，表示该事件是否在捕获阶段触发监听函数。
