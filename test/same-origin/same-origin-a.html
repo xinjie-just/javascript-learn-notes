@@ -8,13 +8,17 @@
   </head>
   <body>
     <iframe
-      src="http://127.0.0.1:4501/same-origin-b.html"
+      src="http://127.0.0.1:5500/test/same-origin-b.html"
       frameborder="0"
     ></iframe>
     <script>
-      console.log('a页面-相同源测试');
-      let win = document.getElementsByTagName('iframe')[0].contentWindow;
-      win.postMessage('我是来自a页面的消息', '*');
+      // console.log('a页面-相同源测试');
+      // let win = document.getElementsByTagName('iframe')[0].contentWindow;
+      // win.postMessage('我是来自a页面的消息', '*');
+
+      let popup = window.open('http://127.0.0.1:5500/test/same-origin-b.html', 'title');
+      // 父窗口向子窗口发消息
+      popup.postMessage('Hello World!', 'http://127.0.0.1:5500/test/same-origin-b.html');
     </script>
   </body>
 </html>

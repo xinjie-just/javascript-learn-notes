@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>progress</title>
+</head>
+<body>
+    <script>
+        var xhr = new XMLHttpRequest();
+        let src = "../media/屏幕录制2021-03-23 17.01.26.mov";
+
+        xhr.open("get", src);
+        xhr.send(null);
+
+        xhr.addEventListener('progress', updateProgress, false);
+        xhr.addEventListener('load', transferComplete, false);
+        xhr.addEventListener('error', transferFailed, false);
+        xhr.addEventListener('abort', transferCanceled, false);
+
+        function updateProgress(e) {
+            if (e.lengthComputable) {
+                var percentComplete = 100 * (e.loaded / e.total) + "%";
+                console.log("percentComplete", percentComplete);
+            } else {
+                console.log('不能计算进度');
+            }
+        }
+
+        function transferComplete(e) {
+            console.log('传输结束');
+        }
+
+        function transferFailed(evt) {
+            console.log('传输过程中发生错误');
+        }
+
+        function transferCanceled(evt) {
+            console.log('用户取消了传输');
+        }
+    </script>
+</body>
+</html>
