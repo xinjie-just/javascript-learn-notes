@@ -1,5 +1,5 @@
 {
-    "window.zoomLevel": 1,
+    "window.zoomLevel": 0,
     "editor.rulers": [
       150
     ],
@@ -52,14 +52,15 @@
     },
     "cSpell.words": [
       "Antd",
-      "Bixi",
-      "Gitlab",
       "anticon",
+      "Bixi",
       "codegen",
       "devkit",
+      "documentfragment",
       "elabels",
       "fmea",
       "formcontrolname",
+      "Gitlab",
       "inmemory",
       "jasminewd",
       "localstorage",
