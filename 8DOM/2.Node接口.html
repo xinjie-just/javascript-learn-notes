@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Node接口</title>
+</head>
+
+<body>
+  <div id="id1"></div><!--注释-->
+  <div id="id2"></div>
+  <script>
+    const id1 = document.getElementById("id1");
+    const id2 = document.getElementById("id2");
+    const ns1 = id1.nextSibling;
+    const ns2 = id2.nextSibling;
+    console.log("ns1.nodeName", ns1.nodeName); // #comment
+    console.log("ns1.nodeValue", ns1.nodeValue); // 注释
+    // 这说明 nextSibling 属性包括注释节点
+
+    console.log("ns2.nodeName", ns2.nodeName); // #text
+    console.log("ns2.nodeValue", ns2.nodeValue); // 换行符
+    // 这说明 nextSibling 属性包括文本节点（空格或换行符等）
+  </script>
+</body>
+
+</html>
