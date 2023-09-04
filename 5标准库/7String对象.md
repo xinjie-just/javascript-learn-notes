@@ -315,7 +315,7 @@ JavaScript 采用的是 Unicode 码点比较，直接通过比较运算符来比
 "hello world".indexOf("o", 6); // 7
 ```
 
-`lastIndexOf` 方法的用法跟 `indexOf` 方法一致，主要的区别是 `lastIndexOf` `从尾部开始匹配，indexOf` 则是从头部开始匹配。
+`lastIndexOf` 方法的用法跟 `indexOf` 方法一致，主要的区别是 `lastIndexOf` 从尾部开始匹配，`indexOf` 则是从头部开始匹配。
 
 ```javascript
 "hello world".lastIndexOf("o"); // 7, 从最后一个字符开始向前匹配， 第一次匹配到 'o'，是 "world" 中的 'o'，所在的位置是 7
@@ -324,6 +324,6 @@ JavaScript 采用的是 Unicode 码点比较，直接通过比较运算符来比
 另外，`lastIndexOf` 的第二个参数表示从该位置起向前匹配。
 
 ```javascript
-"hello world".lastIndexOf("o", 6); // 4，从第 6 个字符（'w'）开始向前匹配，第 1 次匹配到 'o' 是 "hello" 中的 'o'，所在的位置是 7
+"hello world".lastIndexOf("o", 6); // 4，从第 6 个字符（'w'）开始向前匹配，第 1 次匹配到 'o' 是 "hello" 中的 'o'，所在的位置是 4
 "hello world".lastIndexOf("o", 7); // 7，从第 7 个字符（'o'）开始向前匹配，第 1 次匹配到 'o' 是 "world" 中的 'o'，所在的位置是 7
 ```
