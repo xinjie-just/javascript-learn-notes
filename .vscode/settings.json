@@ -80,6 +80,7 @@
       "minimizable",
       "navibar",
       "personalbar",
+      "popstate",
       "prerender",
       "proto",
       "Referer",
