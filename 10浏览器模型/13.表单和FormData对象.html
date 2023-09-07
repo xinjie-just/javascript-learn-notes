@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>表单和FormData对象</title>
+</head>
+<body>
+  <form action="somefile.php">
+    <input
+    type="text"
+    name="username"
+    placeholder="Username"
+    required="true"
+    pattern="[a-z]{1,15}"
+    id="username"
+    />
+      <input type="submit" />
+   </form>
+   <!-- required 表示本字段必须，pattern="[a-z]{1,15}" 表示本字段只能输入1-15位小写字母 -->
+   <!-- 如果直接点击提交按钮，将会报错“请匹配请求的格式”-->
+   <script>
+    let input = document.getElementById('username');
+    input.oninvalid = function (event) {
+      event.target.setCustomValidity('用户名必须是小写字母，不能为空，最长不超过 15 个字符' ); // 自定义报错信息
+    }
+   </script>
+</body>
+</html>
