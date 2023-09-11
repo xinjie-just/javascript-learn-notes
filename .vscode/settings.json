@@ -69,6 +69,7 @@
       "geolocation",
       "Gitlab",
       "hashchange",
+      "IIFE",
       "inmemory",
       "instanceof",
       "jasminewd",
