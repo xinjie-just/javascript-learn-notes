@@ -9,7 +9,7 @@
     "html.format.wrapAttributes": "auto",
     "typescript.updateImportsOnFileMove.enabled": "always",
     "javascript.updateImportsOnFileMove.enabled": "always",
-    "explorer.confirmDelete": true,
+    "explorer.confirmDelete": false,
     "git.ignoreLegacyWarning": true,
     "terminal.integrated.rendererType": "dom",
     "terminal.integrated.shell.osx": "/bin/zsh",
