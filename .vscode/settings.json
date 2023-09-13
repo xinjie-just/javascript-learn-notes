@@ -58,6 +58,7 @@
       "Bixi",
       "codegen",
       "compat",
+      "concat",
       "CSSOM",
       "devkit",
       "documentfragment",
