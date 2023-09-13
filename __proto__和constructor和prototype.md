@@ -30,8 +30,6 @@ Object.constructor === Function;  // true
 Function.constructor === Function;  // true
 ```
 
-
-
 ## `__proto__`
 
 `__proto__`指向他们的原型对象，即父对象。`b.__proto__`可以读作**b的原型对象**（或b的父对象）。
@@ -74,6 +72,3 @@ o.__proto__ === Object.prototype;  // true
 
 Object.prototype.__proto__ === null;  // true
 ```
-
-
-
