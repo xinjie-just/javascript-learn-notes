@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>9.3.Event对象</title>
+  </head>
+  <body>
+    <p>Hello</p>
+    <script>
+      // function giveDetails(e) {
+      //   console.log(e);
+      //   console.log(e.detail); // 点一次是 1，点两次是 2，点三次是 3，点四次是 4...
+      // }
+
+      // document.querySelector("p").onclick = giveDetails;
+
+      let p = document.querySelector("p");
+
+      p.addEventListener(
+        "click",
+        function (e) {
+          console.log(e.composedPath());
+        },
+        false
+      );
+      // Event.composedPath() 返回一个数组，成员是事件的最底层节点和依次冒泡经过的所有上层节点
+      // 输出 [p, body, html, document, Window]
+    </script>
+  </body>
+</html>
