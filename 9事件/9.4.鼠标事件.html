@@ -1,27 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>9.4.鼠标事件</title>
-    <style>
-      body {
-        width: 200px;
-        height: 200px;
-        border: 1px solid #999;
-      }
-    </style>
-  </head>
-  <body>
-    <script>
-      document.body.addEventListener("click", showKey, false);
-      function showKey(e) {
-        console.log("ALT key pressed: " + e.altKey);
-        console.log("CTRL key pressed: " + e.ctrlKey);
-        console.log("META key pressed: " + e.metaKey);
-        console.log("SHIFT key pressed: " + e.shiftKey);
-      }
-    </script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>9.4.鼠标事件</title>
+  <style>
+    body {
+      width: 200px;
+      height: 200px;
+      border: 1px solid #999;
+    }
+
+  </style>
+</head>
+
+<body>
+  <script>
+    document.body.addEventListener("click", showKey, false);
+    function showKey(e) {
+      // console.log('ALT key pressed: ' + e.altKey); // 同时按下鼠标左键，和 Alt 键时，这里打印 true
+      // console.log('CTRL key pressed: ' + e.ctrlKey); // 同时按下鼠标左键，和 Ctrl 键时，这里打印 true
+      // console.log('META key pressed: ' + e.metaKey); // 同时按下鼠标左键，和 Meta（window 系统是 windows 键） 键时，这里打印 true
+      // console.log('SHIFT key pressed: ' + e.shiftKey); // 同时按下鼠标左键，和 Shift 键时，这里打印 true
+
+      // if (e.altKey) {
+      //   console.log("你同时按下了鼠标左键和 alt 键");
+      // } else if (e.ctrlKey) {
+      //   console.log("你同时按下了鼠标左键和 ctrl 键");
+      // } else if (e.metaKey) {
+      //   console.log("你同时按下了鼠标左键和 windows / meta 键");
+      // } else if (e.shiftKey) {
+      //   console.log("你同时按下了鼠标左键和 shift 键");
+      // }
+
+      const screenX = e.screenX;
+      const screenY = e.screenY;
+
+      const clientX = e.clientX;
+      const clientY = e.clientY;
+
+      const x = e.x; // 是 clientX 的别名
+      const y = e.y; // 是 clientY 的别名
+
+      console.log("screenX", screenX);  // 鼠标位置相对于屏幕左上角的水平坐标（单位像素）
+      console.log("screenY", screenY);  // 鼠标位置相对于屏幕左上角的垂直坐标（单位像素）
+      console.log("clientX", clientX);  // 鼠标位置相对于浏览器视口左上角的水平坐标（单位像素）
+      console.log("clientY", clientY);  // 鼠标位置相对于浏览器视口左上角的垂直坐标（单位像素）
+      console.log("x", x);  // 和 clientX 结果一致
+      console.log("y", y);  // 和 clientY 结果一致
+    }
+  </script>
+</body>
+
 </html>
