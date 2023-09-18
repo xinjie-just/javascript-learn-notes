@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>9.10.其他常见事件</title>
+</head>
+<body>
+  <script>
+    window.addEventListener('beforeunload', function (event) {
+      event.returnValue = '您确定要离开吗'; // 兼容性不好，浏览器可能不会显示自定义的这句关闭提示语
+    });
+  </script>
+</body>
+</html>
