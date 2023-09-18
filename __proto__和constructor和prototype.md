@@ -1,5 +1,9 @@
 # `__proto__` 和`constructor` 和 `prototype` 的联系和区别
 
+> - 每个 `class` 都有显示原型 `prototype`
+> - 每个实例都有隐式原型 `__proto__`
+> - 实例的 `__proto__` 指向对应 `class` 的 `prototype`
+
 ## `constructor`
 
 ```javascript
@@ -32,7 +36,7 @@ Function.constructor === Function;  // true
 
 ## `__proto__`
 
-`__proto__`指向他们的原型对象，即父对象。`b.__proto__`可以读作**b的原型对象**（或b的父对象）。
+`__proto__` 指向他们的原型对象，即父对象。`b.__proto__` 可以读作 **b的原型对象** （或 `b` 的父对象）。
 
 ```javascript
 let n = 1;
