@@ -59,6 +59,7 @@
       "codegen",
       "compat",
       "concat",
+      "consle",
       "CSSOM",
       "dblclick",
       "devkit",
