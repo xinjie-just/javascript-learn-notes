@@ -117,6 +117,7 @@
       "scrollbars",
       "seekable",
       "seeked",
+      "somestring",
       "stylelint",
       "submenu",
       "substr",
